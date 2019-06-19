@@ -16,8 +16,17 @@ Route::get('/', function () {
     return view('umum/welcome');
 });
 
+Route::get('/keranjang', function () {
+    return view('/umum/keranjang');
+})->name('keranjang');
 
-Route::get('/product','Master\productController@index');
+
+Route::get('/pembayaran', function () {
+    return view('/umum/pembayaran');
+})->name('pembayaran');
+
+
+Route::get('/product','Master\productController@index')->name('product');
 
 
 
@@ -44,7 +53,7 @@ Route::group(['middleware' => 'auth'],function(){
                 Route::get('/dataUser','Master\userController@getDataUser');
                 Route::post('/simpanUser','Auth\RegisterController@register');
             });
-            
+
             Route::group(['prefix' => 'satuan'], function(){
 
             });
@@ -52,7 +61,7 @@ Route::group(['middleware' => 'auth'],function(){
             Route::group(['prefix' => 'product'], function(){
 
             });
-            
+
     });
 
 
@@ -69,7 +78,6 @@ Route::get('/user', function () {
 Route::get('/kategori', function () {
     return view('/admin/master/datakategori');
 })->name('kategori');
-
 
 
 

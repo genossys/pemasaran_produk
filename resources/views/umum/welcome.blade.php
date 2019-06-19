@@ -22,7 +22,7 @@
 <body class="bodypolos">
 
 
-<nav class="navbar navbarfont navbar-expand-lg navbar-inverse navbar-dark fixed-top home" style="background-color: rgba(0, 0, 0, 0.7)">
+<nav class="navbar navbarfont navbar-expand-lg navbar-inverse navbar-dark fixed-top home">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span id="toggler"><i class="fa fa-bars" aria-hidden="true"></i></span>
     </button>
@@ -37,7 +37,7 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="">Produk</a>
+                <a class="nav-link" href="{{route ('product')}}">Produk</a>
             </li>
 
             <li class="nav-item ">
@@ -58,12 +58,15 @@
                         <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                        <a href="{{route('keranjang')}}" class="dropdown-item dropdown-footer">Keranjang <span class="badge badge-danger">5</span></a>
+                        <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">History Belanja</a>
+                        <hr>
                         <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">Logout</a>
                     </div>
                 </li>
                 @else
                 <li class="nav-item ">
-                    <a class="nav-link" href="/login"> 
+                    <a class="nav-link" href="/login">
                         Login
                         <i class="fa fa-user"></i>
                     </a>
