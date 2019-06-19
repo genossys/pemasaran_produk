@@ -19,9 +19,7 @@ Route::get('/', function () {
 
 Route::get('/product','Master\productController@index');
 
-Route::get('/admin', function () {
-    return view('/admin/menuawal');
-})->name('admin');
+
 
 //member register
 Route::get('/registermember', 'Auth\RegisterMemberController@index');
@@ -38,7 +36,9 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::group(['prefix' => 'admin', 'middleware' => 'hakakses:pimpinan|admin'], function(){
 
-        
+        Route::get('/', function () {
+            return view('/admin/menuawal');
+        })->name('admin');
 
             Route::group(['prefix' => 'user'], function(){
                 Route::get('/dataUser','Master\userController@getDataUser');
