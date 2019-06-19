@@ -96,19 +96,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item ">
-                                    <a href="{{route ('user')}}" class="nav-link">
+                                    <a href="{{route ('pageuser')}}" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data User</p>
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="{{route ('user')}}" class="nav-link">
+                                    <a href="{{ route('pagemember') }}" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Member</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link ">
+                                    <a href="{{ route('pagesatuan') }}" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Satuan</p>
                                     </a>
