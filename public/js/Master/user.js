@@ -21,15 +21,13 @@ $(document).ready(function () {
     $('#btnSimpan').on('click', function (e) {
         alert('oke');
         e.preventDefault();
-        alertSukses.hide();
-        alertDanger.hide();
-        var formID = $('.formSatuan').attr('id');
+        var formID = $('.formuser').attr('id');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        alert(formID);
         if (formID == 'simpan') {
             simpanData();
         } else if (formID == 'edit') {
@@ -42,40 +40,29 @@ $(document).ready(function () {
 
     $("#tambahModal").on("click", function () {
         $("#btnSimpan").text("Simpan");
-        $(".formSimpanUser").attr("id", "simpan");
-        // alertDanger.hide();
-        // alertSukses.hide();
+        $(".formuser").attr("id", "simpan");
     });
 
 });
 
 function simpanData() {
     var formData = new FormData($('#simpan')[0]);
-    formData.append('formadmin','true');
     $.ajax({
         type: 'POST',
-        url: '/admin/satuan/simpanSatuan',
+        url: '/admin/user/simpanUser',
         dataType: 'JSON',
         data: formData,
         contentType: false,
         cache: false,
         processData: false,
         success: function (response) {
-            if (response.valid) {
-                if (response.sqlResponse) {
-                    clearField();
-                    alertSukses.show().html('<p> Sukses Menambahkan User </p>');
-                    table.draw();
-                } else {
-                    alert(response.data);
-                }
+            console.log(response);
+            if (response.sqlResponse) {
+                clearField();
+                alert('sukses');
+                table.draw();
             } else {
-                // alertDanger.hide();
-                // alertSukses.hide();
-                // $.each(response.errors, function (key, value) {
-                //     alertDanger.show().append('<p>' + value + '</p>');
-                // });
-                alert('gagal');
+                alert(response.data);
             }
         },
         error: function (response) {
