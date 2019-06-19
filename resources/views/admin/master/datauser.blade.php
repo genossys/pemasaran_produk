@@ -20,11 +20,10 @@ Data User
         <thead>
             <tr>
                 <th>#</th>
+                <th>Username</th>
                 <th>Email</th>
-                <th>Nama</th>
+                <th>Hak Akses</th>
                 <th>No. Telp</th>
-                <th>Tanggal Lahir</th>
-                <th>Alamat</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -46,25 +45,41 @@ Data User
                     <div class="alert alert-danger" style="display:none"></div>
                     <div class="alert alert-success" style="display:none"></div>
 
+                    
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Nama </label>
-                                <input type="text" class="form-control" placeholder="Nama" id="txtNama" name="txtNama">
+                                <label for="username">{{ __('Username') }}</label>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Email </label>
-                                <input type="email" class="form-control" placeholder="Nama" id="txtEmail" name="txtEmail">
+                                <label for="email">{{ __('E-Mail Address') }}</label>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Alamat </label>
-                        <input type="text" class="form-control" placeholder="Alamat" id="txtAlamat" name="txtAlamat">
+                        <label for="alamat">{{ __('Alamat') }}</label>
+                        <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat">
+                                @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                     </div>
 
                     <div class="row">
@@ -78,13 +93,23 @@ Data User
                                         </span>
                                     </div>
                                     <input type="text" class="form-control float-right datepicker" name="dateTanggalLahir" id="dateTanggalLahir">
+                                    @error('dateTanggalLahir')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>No.Telp </label>
-                                <input type="text" class="form-control" placeholder="No. Telp" id="txtNoTelp" name="txtNoTelp">
+                                <label for="nohp">{{ __('No. Hp') }}</label>
+                                <input id="nohp" type="text" class="form-control @error('nohp') is-invalid @enderror" name="nohp" value="{{ old('nohp') }}" required autocomplete="nohp">
+                                @error('nohp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -112,9 +137,9 @@ Data User
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label >Hak Akses</label>
-                                <select class="form-control" id="cBoxHakAkses">
+                                <select class="form-control" id="cBoxHakAkses" name="hakAkses">
                                     <option value="admin">Admin</option>
-                                    <option value="user">User</option>
+                                    <option value="pimpinan">Pimpinan</option>
                                 </select>
                             </div>
                         </div>
@@ -137,6 +162,7 @@ Data User
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/bootstrap-datepicker.min.css')}}">
+<link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css')}}">
 @endsection
 
 
@@ -153,5 +179,7 @@ Data User
         });
     });
 </script>
-
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTablesBootstrap4.js') }}"></script>
+<script src="{{ asset('/js/Master/user.js') }}"></script>
 @endsection

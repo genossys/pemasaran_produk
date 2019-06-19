@@ -10,25 +10,53 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('umum/welcome');
 });
 
-Auth::routes();
 
-
-//Login
-Route::get('/login','AuthController@login')->name('login');
-Route::post('/postlogin','AuthController@postlogin');
-Route::get('/logout','AuthController@logout')->name('logout');
-
-Route::group(['middleware' => 'auth'],function(){
-
+Route::get('/product','Master\productController@index');
 
 Route::get('/admin', function () {
     return view('/admin/menuawal');
 })->name('admin');
+
+//member register
+Route::get('/registermember', 'Auth\RegisterMemberController@index');
+Route::post('/postRegister', 'Auth\RegisterMemberController@register')->name('register');
+
+//Login
+Route::get('/login','Auth\LoginController@login')->name('login');
+Route::post('/postlogin','Auth\LoginController@postlogin');
+Route::get('/logout','Auth\LoginController@logout')->name('logout');
+
+
+
+Route::group(['middleware' => 'auth'],function(){
+
+    Route::group(['prefix' => 'admin', 'middleware' => 'hakakses:pimpinan|admin'], function(){
+
+        
+
+            Route::group(['prefix' => 'user'], function(){
+                Route::get('/dataUser','Master\userController@getDataUser');
+                Route::post('/simpanUser','Auth\RegisterController@register');
+            });
+            
+            Route::group(['prefix' => 'satuan'], function(){
+
+            });
+
+            Route::group(['prefix' => 'product'], function(){
+
+            });
+            
+    });
+
+
+
 
 Route::get('/produk', function () {
     return view('/admin/master/dataproduk');
@@ -48,4 +76,3 @@ Route::get('/kategori', function () {
 
 });
 
-Route::get('/home', 'HomeController@index')->name('home');

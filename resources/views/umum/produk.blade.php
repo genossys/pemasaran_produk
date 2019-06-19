@@ -51,26 +51,28 @@
         <h3 class="text-center"> Paket Kami</h3>
         <hr class="judulsection">
         <div class="row">
-            <div class="col-md-4">
-                <div class="kartupaket">
-                    <img src="{{asset ('/assets/gambar/paket1.jpg')}}" alt="">
+            @foreach ($productPromo as $pp)
+                
+            
+                <div class="col-md-4">
+                    <div class="kartupaket">
+                        <img src="{{asset ('/assets/gambar/paket1.jpg')}}" alt="">
 
-                    <h3 class="namapaket"> Paket 1 </h3>
+                        <h3 class="namapaket"> {{$pp->namaProduct}}</h3>
 
-                    <p class="isipaket">Nasi uduk</p>
-                    <p class="isipaket">Sop Matahari</p>
-                    <p class="isipaket">Es Buah</p>
+                        <p class="isipaket">{{$pp->kdKategori}}</p>
+                        <p class="isipaket">$pp->deskripsi</p>
 
-                    <div class="tombolpesanpaket">
-                        <h4> Rp 2.000</h4>
-                    </div>
+                        <div class="tombolpesanpaket">
+                            <h4> Rp {{ number_format($pp->hargaJual,2,',','.')}}</h4>
+                        </div>
 
-                    <div class="tombolpesanpaket text-right">
-                        <button class="input-plus btn btn-primary">Pesan Sekarang</button>
+                        <div class="tombolpesanpaket text-right">
+                            <button class="input-plus btn btn-primary">Pesan Sekarang</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            @endforeach
         </div>
 
 

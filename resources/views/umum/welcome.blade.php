@@ -44,9 +44,31 @@
                 <a class="nav-link" href="">Kontak</a>
             </li>
 
-            <li class="nav-item ">
-                <a class="nav-link" href="/login"> Login <i class="fa fa-user"></i></a>
-            </li>
+            @if (auth()->check())
+
+                @if (auth()->user()->hakAkses == 'admin' || auth()->user()->hakAkses == 'pimpinan')
+                    <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin')}}">Dashboard</a>
+                </li>
+                @endif
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        {{auth()->user()->username}}
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                        <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">Logout</a>
+                    </div>
+                </li>
+                @else
+                <li class="nav-item ">
+                    <a class="nav-link" href="/login"> 
+                        Login
+                        <i class="fa fa-user"></i>
+                    </a>
+                </li>
+                @endif
 
         </ul>
     </div>
