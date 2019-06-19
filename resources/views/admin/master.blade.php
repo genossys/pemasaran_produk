@@ -78,7 +78,7 @@
                         <img src="{{asset ('/adminlte/img/avatar5.png')}}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{auth()->user()->user_id}}</a>
+                        <a href="#" class="d-block">{{auth()->user()->username}}</a>
                     </div>
                 </div>
 
@@ -95,6 +95,18 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item ">
+                                    <a href="{{route ('user')}}" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Data User</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{route ('user')}}" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Data Member</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{route ('kategori')}}" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
