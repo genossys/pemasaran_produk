@@ -17,11 +17,18 @@ Route::get('/', function () {
     return view('umum/welcome');
 });
 
-Route::get('/produk', function () {
-    return view('/admin/master/dataproduk');
-})->name('produk');
 
-//Registrasi Member
+Route::get('/keranjang', function () {
+    return view('/umum/keranjang');
+})->name('keranjang');
+
+
+
+Route::get('/pembayaran', function () {
+    return view('/umum/pembayaran');
+})->name('pembayaran');
+
+
 Route::get('/registermember', 'Master\memberController@showFormRegistrasi');
 Route::post('/postRegister', 'Master\memberController@register')->name('registermember');
 
@@ -45,7 +52,7 @@ Route::group(['middleware' => 'auth'],function(){
                 Route::get('/dataUser','Master\userController@getDataUser');
                 Route::post('/simpanUser', 'Master\userController@addUser');
             });
-            
+
             Route::group(['prefix' => 'member'], function(){
                 Route::get('/', 'Master\memberController@index')->name('pagemember');
                 Route::get('/dataMember', 'Master\memberController@getDataMember');
@@ -57,10 +64,10 @@ Route::group(['middleware' => 'auth'],function(){
             });
 
             Route::group(['prefix' => 'product'], function(){
-                Route::get('/', 'Master\productController@index');
+                Route::get('/', 'Master\productController@index')->name('product');
 
             });
-            
+
     });
 
 
@@ -72,7 +79,6 @@ Route::group(['middleware' => 'auth'],function(){
 Route::get('/kategori', function () {
     return view('/admin/master/datakategori');
 })->name('kategori');
-
 
 
 

@@ -81,6 +81,7 @@ class ComposerStaticInit78380f1d7f35f8618d0672d7a8c2d170
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '48c267551274a550f0dff35308f70a47' => __DIR__ . '/../..' . '/app/helper/genoshelper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -520,6 +521,7 @@ class ComposerStaticInit78380f1d7f35f8618d0672d7a8c2d170
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\Master\\memberController' => __DIR__ . '/../..' . '/app/Http/Controllers/Master/memberController.php',
         'App\\Http\\Controllers\\Master\\productController' => __DIR__ . '/../..' . '/app/Http/Controllers/Master/productController.php',
+        'App\\Http\\Controllers\\Master\\satuanController' => __DIR__ . '/../..' . '/app/Http/Controllers/Master/satuanController.php',
         'App\\Http\\Controllers\\Master\\userController' => __DIR__ . '/../..' . '/app/Http/Controllers/Master/userController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
