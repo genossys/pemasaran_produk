@@ -17,19 +17,15 @@ Route::get('/', function () {
     return view('umum/welcome');
 });
 
-Route::get('/product', function () {
-    return view('/admin/master/product');
-})->name('product');
-
 
 Route::get('/keranjang', function () {
-    return view('/admin/master/keranjang');
+    return view('/umum/keranjang');
 })->name('keranjang');
 
 
 
 Route::get('/pembayaran', function () {
-    return view('/admin/master/pembayaran');
+    return view('/umum/pembayaran');
 })->name('pembayaran');
 
 
@@ -68,7 +64,7 @@ Route::group(['middleware' => 'auth'],function(){
             });
 
             Route::group(['prefix' => 'product'], function(){
-                Route::get('/', 'Master\productController@index');
+                Route::get('/', 'Master\productController@index')->name('product');
 
             });
 

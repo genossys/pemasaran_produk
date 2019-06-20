@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ada Collection</title>
+    <title>Penjualan Fashion</title>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
 

@@ -57,12 +57,12 @@ class productSeeder extends Seeder
         productModel::insert([
             [
                 'kdProduct'     => 'KD001',
-                'namaProduct'   => 'Nama Product 1', 
-                'kdKategori'    => 'PKP', 
-                'kdSatuan'      => 'PCS', 
-                'hargaJual'     => 12500, 
-                'diskon'        => 0, 
-                'deskripsi'     => 'Deskripsi Nama Product 1', 
+                'namaProduct'   => 'Nama Product 1',
+                'kdKategori'    => 'PKP',
+                'kdSatuan'      => 'PCS',
+                'hargaJual'     => 12500,
+                'diskon'        => 0,
+                'deskripsi'     => 'Deskripsi Nama Product 1',
                 'promo'         => 'T',
                 'urlFoto'       => '',
                 'created_at'    => Carbon::now(),
