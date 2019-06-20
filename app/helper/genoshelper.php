@@ -14,6 +14,11 @@ function formatDateToSurat($tanggal){
 
 }
 
+function formatuang($angka)
+{
+    return  number_format($angka, 0, '', '.');
+}
+
 // function nomorPO_otomatis(){
 //     $sekarang = Carbon\Carbon::now()->format('Y-m-d');
 //     $tahun = substr($sekarang,0,4);

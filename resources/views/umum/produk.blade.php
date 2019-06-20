@@ -86,7 +86,7 @@
                         <a> {{formatRupiah($pnp->hargaJual)}}</a>
                     </div>
                     <div class="text-right">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Detail</button>
+                        <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{auth()->user()->username}}')">Detail</button>
                     </div>
                 </div>
             </div>
@@ -112,15 +112,11 @@
                                 <img class="gambarnew img-fluid" src="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}" alt="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}">
                             </div>
                             <div class="col-sm-7">
-                                <h5 class="text-white font-weight-bold mb-4"> Model Baju Wanita Terbaru BBSN016 lengan panjang kekinian </h5>
-                                <p class="text-white">Bahan: Kain Balotelly Premium + Aplikasi Mutiara
-                                    Warna: Navy, Maroon, Pink
-                                    Model: Atasan
-                                    Berat: 300 gram
-                                    Ukuran: All Size Fit To L
-                                    Lingkar dada: 95 cm
-                                    Panjang Baju: 60 cm</p>
-                                <h2 class="text-white font-weight-bold"> Rp. 75.000</h2>
+                                <h5 class="text-white font-weight-bold mb-4" id="namaproduct"></h5>
+                                <p class="text-white" id="deskripsi"></p>
+                                <p class="text-white">Diskon : Rp. </p><p class="text-white" id="diskon"></p>
+                                <p class="text-white">Harga : Rp. </p> <h2 class="text-white" font-weight-bold" id="hargaJual"></h2>
+                                <p class="text-white">{{auth()->user()->username}}</p>
                                 <div class="tombolpesan">
                                     <p>
                                     </p>
@@ -130,7 +126,7 @@
                                                 <span>-</span>
                                             </button>
                                         </span>
-                                        <input type="text" name="quant[2]" class="input-number text-center" value="1" min="1" max="100" style="width: 50px">
+                                        <input type="text" id="qty" name="quant[2]" class="input-number text-center" value="1" min="1" max="100" style="width: 50px">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-light btn-number input-min" data-type="plus" data-field="quant[2]">
                                                 <span>+</span>
@@ -138,7 +134,12 @@
                                         </span>
                                     </div>
                                     <p></p>
-                                    <button class="btn btn-primary">Tambah Ke Keranjang</button>
+                                    @if (auth()->check())
+                                        <button class="btn btn-primary" id="btnSimpan">Tambah Ke Keranjang</button>
+                                    @else
+                                        <button class="btn btn-primary" onclick="javascript:alert('Anda Harus Login Dulu!')">Tambah Ke Keranjang</button>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -166,4 +167,6 @@
 @section('script')
 <script src="{{ asset('/js/tampilan/genosstyle.js') }}"></script>
 <script src="{{ asset('/js/tampilan/inputnumber.js') }}"></script>
+<script src="{{ asset('/js/Transaksi/product.js') }}"></script>
+
 @endsection

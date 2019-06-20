@@ -115,7 +115,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{route ('produk')}}" class="nav-link ">
+                                    <a href="" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Produk</p>
                                     </a>
@@ -123,7 +123,7 @@
 
 
                                 <li class="nav-item ">
-                                    <a href="{{route ('user')}}" class="nav-link">
+                                    <a href="" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data User</p>
                                     </a>
