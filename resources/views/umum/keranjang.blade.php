@@ -26,13 +26,6 @@
 
     <div class="catatankusus container">
     <hr>
-        <div class="form-group">
-            <label>Catatan Kusus </label>
-            <textarea class="form-control" rows="3" id="txtCatatan" name="txtCatantan"></textarea>
-        </div>
-
-
-
         <div class="row">
             <div class="col-sm-2">
                 <button class="btn btn-primary btn-lg">Check Out</button>
@@ -40,12 +33,16 @@
 
             <div class="col-sm-10 text-right">
                 <div class="totalkeranjang ">
-                    <a>Total: </a> <a class="font-weight-bold"> Rp 50.000 </a> </div>
+                 <h4><a>Total: </a> <a class="font-weight-bold" id="totalKeranjang"></a></h4> </div>
             </div>
         </div>
         <hr>
     </div>
-</div> @endsection @section('footer') <section>
+</div> 
+@endsection 
+
+@section('footer') 
+<section>
     <footer>
         <div class="footer">
             &copy; Copyright 2019
@@ -55,6 +52,13 @@
 @endsection
 
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css')}}">
+@endsection
 @section('script')
 <script src="{{ asset('/js/tampilan/genosstyle.js') }}"></script>
+<script src="{{ asset('/js/tampilan/numeral.min.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTablesBootstrap4.js') }}"></script>
+<script src="{{ asset('/js/Transaksi/keranjang.js') }}"></script>
 @endsection

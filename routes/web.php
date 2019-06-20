@@ -22,6 +22,8 @@ Route::get('/keranjang', function () {
     return view('/umum/keranjang');
 })->name('keranjang');
 
+Route::get('/getDataKeranjang', 'Transaksi\KeranjangController@getDataKeranjang');
+
 
 
 Route::get('/pembayaran', function () {
@@ -36,6 +38,12 @@ Route::post('/postRegister', 'Master\memberController@register')->name('register
 Route::get('/login','Auth\LoginController@login')->name('login');
 Route::post('/postlogin','Auth\LoginController@postlogin');
 Route::get('/logout','Auth\LoginController@logout')->name('logout');
+Route::post('/simpanProduct', 'Transaksi\KeranjangController@insert');
+Route::group(['prefix' => 'product'], function(){
+    Route::get('/', 'Master\productController@index')->name('product');
+    
+});
+
 
 //Route yang bisa di akses setelah melakukan login
 Route::group(['middleware' => 'auth'],function(){
@@ -64,19 +72,13 @@ Route::group(['middleware' => 'auth'],function(){
             });
 
             Route::group(['prefix' => 'product'], function(){
-                Route::get('/', 'Master\productController@index')->name('product');
+                Route::get('/', 'Master\productController@index')->name('pageproduct');
 
             });
 
     });
 
-
-
-
-Route::get('/produk', function () {
-    return view('/admin/master/dataproduk');
-})->name('produk');
-
+    
 
 Route::get('/kategori', function () {
     return view('/admin/master/datakategori');

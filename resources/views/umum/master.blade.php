@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Penjualan Fashion</title>
     <!-- Fonts -->
@@ -15,6 +16,7 @@
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('/css/genosstyle.css') }}" rel="stylesheet" />
     <link href="{{ asset('/css/animate.css') }}" rel="stylesheet" />
+    @yield('css')
 
 
 </head>
@@ -40,7 +42,7 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{route('produk')}}">Kontak</a>
+                    <a class="nav-link" href="">Kontak</a>
                 </li>
 
                 @if (auth()->check())
@@ -81,6 +83,7 @@
     <!-- JS -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
+    <script src=" {{asset ('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     @yield('script')
 
