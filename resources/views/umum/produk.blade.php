@@ -130,7 +130,7 @@
                                                 <span>-</span>
                                             </button>
                                         </span>
-                                        <input type="text" name="quant[2]" class="input-number text-center" value="1" min="1" max="100" style="width: 50px">
+                                        <input type="text" name="quant[2]" class="input-number text-center" value="0" min="0" max="1000" style="width: 50px">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-light btn-number input-min" data-type="plus" data-field="quant[2]">
                                                 <span>+</span>
