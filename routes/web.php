@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('umum/welcome');
 });
 
+Route::get('/produk', function () {
+    return view('/admin/master/dataproduk');
+})->name('produk');
+
 //Registrasi Member
 Route::get('/registermember', 'Master\memberController@showFormRegistrasi');
 Route::post('/postRegister', 'Master\memberController@register')->name('registermember');
@@ -62,9 +66,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 
 
-Route::get('/produk', function () {
-    return view('/admin/master/dataproduk');
-})->name('produk');
+
 
 
 Route::get('/kategori', function () {
