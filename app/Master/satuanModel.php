@@ -11,4 +11,5 @@ class satuanModel extends Model
     protected $fillable = ['kdSatuan', 'namaSatuan'];
     protected $primaryKey = 'kdSatuan';
     public $incrementing = false;
+    public $timestamps = false;
 }

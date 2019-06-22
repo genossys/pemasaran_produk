@@ -12,14 +12,28 @@ $(document).ready(function () {
 
 });
 
-function showModal(kdproduct ,nama, deskripsi, diskon, harga, username) {
+function showModal(kdproduct ,nama, deskripsi, diskon, harga, img, username) {
     vkdProduct = kdproduct;
     vusername = username;
     $('#namaproduct').html(nama);
     $('#deskripsi').html(deskripsi);
     $('#diskon').html(diskon);
     $('#hargaJual').html(harga);
+    $('#gambarnew').attr('src', img);
     $('#myModal').modal('show');
+    
+
+}
+function showModalPromo(kdproduct ,nama, deskripsi, diskon, harga, img, username) {
+    vkdProduct = kdproduct;
+    vusername = username;
+    $('#namaproduct').html(nama);
+    $('#deskripsi').html(deskripsi);
+    $('#diskon').html(diskon);
+    $('#hargaJual').html(harga);
+    $('#gambarnew').attr('src', img);
+    $('#myModal').modal('show');
+    
 
 }
 
@@ -40,7 +54,7 @@ function simpanData() {
 
     $.ajax({
         type: 'POST',
-        url: '/simpanProduct',
+        url: '/product/simpanProduct',
         dataType: 'JSON',
         data: {
             
@@ -53,9 +67,7 @@ function simpanData() {
         success: function (response) {
             console.log(response);
             if (response.sqlResponse) {
-                clearField();
                 alert('sukses');
-                table.draw();
             } else {
                 alert(response.data);
             }

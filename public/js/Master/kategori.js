@@ -1,4 +1,3 @@
-
 var alertSukses = $('.alert-success');
 var alertDanger = $('.alert-danger');
 
@@ -7,77 +6,75 @@ var table = $('#example2').DataTable({
     autowidth: true,
     serverSide: true,
     processing: false,
-    ajax: '/admin/satuan/dataSatuan',
+    ajax: '/admin/kategori/dataKategori',
     columns: [
-        { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false, sortable: false },
-        { data: 'kdSatuan', name: 'kdSatuan' },
-        { data: 'namaSatuan', name: 'namaSatuan' },
+        { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
+        { data: 'kdKategori', name: 'kdKategori' },
+        { data: 'namaKategori', name: 'namaKategori' },
         { data: 'action', name: 'action', searchable: false, orderable: false }
     ],
-    columnDefs: [{
-                targets: [0],
-                width: '5%',
-                orderable: false
-            },
-            {
-                targets: [0, 1, 3],
-                className: 'text-center'
-            },
-        ],
-        "scrollX": true
+     columnDefs: [
+        { targets: [0], width:'5%', orderable: false},
+        {
+            targets: [0, 1, 3],
+            className: 'text-center'
+        },
+    ],
+    "scrollX": true
 
 });
 
 $(document).ready(function () {
 
-    $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip"]').tooltip();
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-
-    $('#btnSimpan').on('click', function (e) {
-        var FormID = $(".form").attr("id");
-        e.preventDefault();
-        if (FormID == 'simpan') {
-            simpanData();
-        } else {
-            editData();
-        }
-    });
-
+        
+        $('#btnSimpan').on('click', function (e) {
+            var FormID = $(".form").attr("id");
+            e.preventDefault();
+            if (FormID == 'simpan') {
+               simpanData();
+            } else {
+                editData();
+            }
+        });
+        
 });
 
-function showTambahSatuan() {
+function showTambahkategori() {
     $(".form").attr("id", "simpan");
     $("#iconbtn").text(' Simpan');
-    $('#modalSatuan').modal('show');
-    clearField();
+    $('#modalKategori').modal('show');
 }
 
-function showEditSatuan(kode, nama, e) {
+function showEditkategori(kode, nama, e) {
     $(".form").attr("id", "edit");
     $("#iconbtn").text(' Simpan');
     e.preventDefault();
-    $('#oldkdSatuan').val(kode);
-    $('#kdSatuan').val(kode);
-    $('#namaSatuan').val(nama);
-    $('#modalSatuan').modal('show');
+    $('#oldkdKategori').val(kode);
+    $('#kdKategori').val(kode);
+    $('#namaKategori').val(nama);
+    $('#modalKategori').modal('show');
 }
 
 function clearField() {
-    $('#kdSatuan').val('');
-    $('#namaSatuan').val('');
+    $('#kdKategori').val('');
+    $('#namaKategori').val('');
+    
+
 }
 
 function simpanData() {
     var formData = new FormData($('#simpan')[0]);
     $.ajax({
         type: 'POST',
-        url: '/admin/satuan/simpanSatuan',
+        url: '/admin/kategori/simpankategori',
         dataType: 'JSON',
         data: formData,
         contentType: false,
@@ -111,11 +108,12 @@ function simpanData() {
 
     });
 }
+
 function editData() {
     var formData = new FormData($('#edit')[0]);
     $.ajax({
         type: 'POST',
-        url: '/admin/satuan/editSatuan',
+        url: '/admin/kategori/editkategori',
         dataType: 'JSON',
         data: formData,
         contentType: false,
@@ -126,7 +124,7 @@ function editData() {
             if (response.valid) {
                 if (response.sqlResponse) {
                     alert('Berhasil Merubah Data!');
-                    $('#modalSatuan').modal('hide');
+                    $('#modalKategori').modal('hide');
                     table.draw();
                 } else {
                     alert(response.data);
@@ -154,7 +152,7 @@ function hapus(id, e) {
 
         $.ajax({
             type: 'POST',
-            url: '/admin/satuan/deleteSatuan',
+            url: '/admin/kategori/deletekategori',
             data: {
                 _method: 'DELETE',
                 _token: $('input[name=_token]').val(),

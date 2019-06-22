@@ -5,6 +5,8 @@ Data Member
 @endsection
 
 @section('content')
+<br>
+<br>
     <div class="table-responsive-lg">
         <table id="example2" class="table table-striped  table-bordered table-hover" cellspacing="0" width="100%">
             <thead>
@@ -15,6 +17,7 @@ Data Member
                     <th>No. Telp</th>
                     <th>Alamat</th>
                     <th>Tgl. Lahir</th>
+                    <th>Action</th>
                 </tr>
             </thead>
         </table>

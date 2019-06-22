@@ -21,8 +21,10 @@
     <link rel="stylesheet" href="{{ asset('/adminlte/css/adminlte.min.css')}}">
     <!-- Genosstyle -->
     <link rel="stylesheet" href="{{ asset('/css/genosstyle.css')}}">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href=" {{ asset('/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    
 
 
     @yield('css')
@@ -32,7 +34,7 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom home">
+        <nav class="main-header navbar navbar-expand border-bottom home">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -47,7 +49,7 @@
 
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto" style="margin-right: 0">
+            <ul class="navbar-nav right" style="margin-right: 0">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -107,27 +109,28 @@
                                         <p>Data Member</p>
                                     </a>
                                 </li>
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('pagesatuan') }}" class="nav-link ">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Data Satuan</p>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a href="{{ route('pagekategori') }}" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Kategori</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link ">
+                                    <a href="{{ route('pageproduct') }}" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Produk</p>
                                     </a>
                                 </li>
-
-
-                                <li class="nav-item ">
-                                    <a href="" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Data User</p>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
 
@@ -183,6 +186,9 @@
 
             <!-- Main content -->
             <section class="content">
+                <br>
+                <br>
+
                 <div class="container-fluid">
                     @yield('content')
                 </div><!-- /.container-fluid -->

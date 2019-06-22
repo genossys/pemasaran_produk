@@ -4,27 +4,28 @@ namespace App\Http\Controllers\Master;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Master\satuanModel;
 use Yajra\DataTables\DataTables;
+use App\Master\kategoriModel;
 use Illuminate\Support\Facades\Validator;
 
-class satuanController extends Controller
+class kategoriController extends Controller
 {
     //
-    public function index(){
-        return view('admin.master.datasatuan');
+    public function index()
+    {
+        return view('admin.master.datakategori');
     }
-
-    public function getDataSatuan(){
-        $satuan = satuanModel::query()
-            ->select('kdSatuan', 'namaSatuan')
+    public function getDatakategori()
+    {
+        $kategori = kategoriModel::query()
+            ->select('kdKategori', 'namaKategori')
             ->get();
 
-        return DataTables::of($satuan)
+        return DataTables::of($kategori)
             ->addIndexColumn()
-            ->addColumn('action', function ($satuan) {
-                return '<a class="btn-sm btn-warning" id="btn-edit" href="#" onclick="showEditSatuan(\'' . $satuan->kdSatuan . '\', \'' . $satuan->namaSatuan . '\', event)" ><i class="fa fa-edit"></i></a>
-                            <a class="btn-sm btn-danger" id="btn-delete" href="#" onclick="hapus(\'' . $satuan->kdSatuan . '\', event)" ><i class="fa fa-trash"></i></a>
+            ->addColumn('action', function ($kategori) {
+                return '<a class="btn-sm btn-warning" id="btn-edit" href="#" onclick="showEditkategori(\''.$kategori->kdKategori.'\', \''.$kategori->namaKategori.'\', event)" ><i class="fa fa-edit"></i></a>
+                            <a class="btn-sm btn-danger" id="btn-delete" href="#" onclick="hapus(\''.$kategori->kdKategori.'\', event)" ><i class="fa fa-trash"></i></a>
                         ';
             })
             ->rawColumns(['action'])
@@ -39,24 +40,25 @@ class satuanController extends Controller
         ];
 
         $rules = [
-            'kdSatuan' => 'required|max:10',
-            'namaSatuan' => 'required|max:255',
+            'kdKategori' => 'required|max:10',
+            'namaKategori' => 'required|max:255',
         ];
 
         return Validator::make($r->all(), $rules, $messages);
     }
 
-    public function insert(Request $r){
+    public function insert(Request $r)
+    {
         if ($this->isValid($r)->fails()) {
             return response()->json([
                 'valid' => false,
                 'errors' => $this->isValid($r)->errors()->all()
             ]);
-        }else {
+        } else {
             try {
-                $satuan = new satuanModel();
-                $satuan->kdSatuan = $r->kdSatuan;
-                $satuan->namaSatuan = $r->namaSatuan;
+                $satuan = new kategoriModel();
+                $satuan->kdKategori = $r->kdKategori;
+                $satuan->namaKategori = $r->namaKategori;
                 $satuan->save();
                 return response()->json([
                     'valid' => true,
@@ -71,7 +73,6 @@ class satuanController extends Controller
                 ]);
             }
         }
-        
     }
 
     public function edit(Request $r)
@@ -83,13 +84,13 @@ class satuanController extends Controller
             ]);
         } else {
             try {
-                $id = $r->oldkdSatuan;
+                $id = $r->oldkdKategori;
                 $data = [
-                    'kdSatuan' => $r->kdSatuan,
-                    'namaSatuan' => $r->namaSatuan,
+                    'kdKategori' => $r->kdKategori,
+                    'namaKategori' => $r->namaKategori,
                 ];
-                satuanModel::query()
-                    ->where('kdSatuan', '=', $id)
+                kategoriModel::query()
+                    ->where('kdkategori', '=', $id)
                     ->update($data);
                 return response()
                     ->json([
@@ -110,9 +111,9 @@ class satuanController extends Controller
     public function delete(Request $r)
     {
         $id = $r->input('id');
-        satuanModel::query()
-            ->where('kdSatuan', '=', $id)
-            ->delete();;
+        kategoriModel::query()
+            ->where('kdkategori', '=', $id)
+            ->delete();
         return response()->json([
             'sukses' => 'Berhasil Di hapus' . $id,
             'sqlResponse' => true,

@@ -33,7 +33,7 @@ class TbMaster extends Migration
             $table->text('alamat');
             $table->timestamps();
         });
-
+        
         Schema::create('tb_product', function(Blueprint $table){
             $table->string('kdProduct','15')->primary();
             $table->string('namaProduct','255');

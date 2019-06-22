@@ -35,6 +35,10 @@ class memberController extends Controller
             ->get();
         return DataTables::of($member)
             ->addIndexColumn()
+            ->addColumn('action', function ( $member) {
+                return ' <a class="btn-sm btn-danger" data-toggle="tooltip" title="Hapus Data" id="btn-delete" href="#" onclick="hapus(\'' . $member->username . '\', event)" ><i class="fa fa-trash"></i></a>
+                        ';
+            })
             ->make(true);
     }
 
@@ -53,7 +57,7 @@ class memberController extends Controller
         $rules = [
             'username' => 'required|max:191|unique:tb_user,username',
             'email' => 'required|max:191',
-            'nohp' => 'required|numeric',
+            'nohp' => 'required|numeric|digits_between:1,15',
             'dateTanggalLahir' => 'required',
             'password' => 'required|string|min:8|confirmed',
         ];
@@ -73,6 +77,7 @@ class memberController extends Controller
                 $member->password = Hash::make($r->password);
                 $member->nohp = $r->nohp;
                 $member->alamat = $r->alamat;
+                $member->tgllahir = $r->dateTanggalLahir;
                 $member->save();
                 $credentials = $r->only('email', 'password');
                     if (Auth::attempt($credentials)) {
@@ -85,4 +90,16 @@ class memberController extends Controller
             }
         
     }
+
+    public function delete(Request $r)
+    {
+        $id = $r->input('id');
+        memberModel::query()
+            ->where('username', '=', $id)
+            ->delete();;
+        return response()->json([
+            'sukses' => 'Berhasil Di hapus' . $id,
+            'sqlResponse' => true,
+        ]);
+    } 
 }

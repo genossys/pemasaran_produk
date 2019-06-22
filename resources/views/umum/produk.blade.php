@@ -20,14 +20,18 @@
                     @endif
                     <div class="row">
                         <div class="col-sm-5 text-right">
-                            <img class="gambarnew img-fluid" src="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}" alt="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}">
+                            <img id="thumbnailpromo" class="gambarnew img-fluid" src="{{asset ('/foto/'.$pp->urlFoto)}}" alt="{{asset ('/foto/'.$pp->urlFoto)}}">
                         </div>
                         <div class="col-sm-7 text-white">
                             <h3> {{$pp->namaProduct}}</h3>
                             <p class="mt-4 text-white">{{$pp->deskripsi}}</p>
                             <h3 style="color: white;font-weight: 700"> {{formatRupiah($pp->hargaJual)}}</h3>
                             <div class="tombolpesan text-right">
-                                <button class="btn btn-lg btn-primary btn-detail" data-toggle="modal" data-target="#myModal">Detail</button>
+                                @if (auth()->check())
+                                        <button class="btn btn-sm btn-primary" onclick="showModalPromo('{{$pp->kdProduct}}','{{$pp->namaProduct}}', '{{$pp->deskripsi}}', '{{$pp->diskon}}','{{$pp->hargaJual}}','{{asset ('/foto/'.$pp->urlFoto)}}','{{auth()->user()->username}}')">Detail</button>
+                                @else
+                                        <button class="btn btn-sm btn-primary" onclick="showModalPromo('{{$pp->kdProduct}}','{{$pp->namaProduct}}', '{{$pp->deskripsi}}', '{{$pp->diskon}}','{{$pp->hargaJual}}','{{asset ('/foto/'.$pp->urlFoto)}}','')">Detail</button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -80,14 +84,21 @@
             @foreach($productNonPromo as $pnp)
             <div class="col-md-2 mb-4">
                 <div class="kartuproduk">
-                    <img src="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}" alt="">
+                    <img id ="thumbnailnonpromo" src="{{asset ('/foto/'.$pnp->urlFoto)}}" alt="{{asset ('/foto/'.$pnp->urlFoto) }}">
                     <a class="text-left namaproduk" data-toggle="modal" data-target="#myModal"> {{$pnp->namaProduct}}</a>
                     <div class="hargaproduk">
                         <a> {{formatRupiah($pnp->hargaJual)}}</a>
                     </div>
-                    <div class="text-right">
-                        <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{auth()->user()->username}}')">Detail</button>
-                    </div>
+                    @if (auth()->check())
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{asset ('/foto/'.$pnp->urlFoto)}}', '{{auth()->user()->username}}')">Detail</button>
+                        </div>
+                    @else
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{asset ('/foto/'.$pnp->urlFoto)}}', '')">Detail</button>
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
             @endforeach
@@ -109,14 +120,13 @@
                     <div class="jumbotron  panelmodal">
                         <div class="row">
                             <div class="col-sm-5 text-right">
-                                <img class="gambarnew img-fluid" src="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}" alt="{{asset ('/assets/gambar/baju_wanita_panjang.jpg')}}">
+                                <img id ="gambarnew" class="gambarnew img-fluid" src="" alt="">
                             </div>
                             <div class="col-sm-7">
                                 <h5 class="text-white font-weight-bold mb-4" id="namaproduct"></h5>
                                 <p class="text-white" id="deskripsi"></p>
                                 <p class="text-white">Diskon : Rp. </p><p class="text-white" id="diskon"></p>
                                 <p class="text-white">Harga : Rp. </p> <h2 class="text-white" font-weight-bold" id="hargaJual"></h2>
-                                <p class="text-white">{{auth()->user()->username}}</p>
                                 <div class="tombolpesan">
                                     <p>
                                     </p>
