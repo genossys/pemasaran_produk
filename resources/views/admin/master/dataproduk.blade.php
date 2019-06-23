@@ -9,14 +9,15 @@ Data Produk
 
 <!-- Button to Open the Modal -->
 <br>
-<div>
-        <button id="btnTambah" type="button" style="margin-bottom: 10px"class="btn btn-primary box-tools pull-right" onclick="showTambahProduct()">
-            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Tambah Product
+<!-- Button to Open the Modal -->
+<section>
+    <div>
+        <button id="btnTambah" type="button" class="btn btn-primary btn-sm box-tools pull-left" onclick="showTambahUser()">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
         </button>
     </div>
-    <br>
-    <br>
-    <hr>
+</section>
+
 <div class="table-responsive-lg">
     <table id="example2" class="table table-striped  table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
@@ -95,7 +96,7 @@ Data Produk
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label id="labelKetSnack">Deskripsi Produk </label>
                         <textarea class="form-control" rows="3" id="deskripsi" name="deskripsi"></textarea>
@@ -113,15 +114,15 @@ Data Produk
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                        <label id="labelGambarSnack">Gambar Produk </label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
-                            <label class="custom-file-label" for="customFile">Pilih file</label>
+                                <label id="labelGambarSnack">Gambar Produk </label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                    <label class="custom-file-label" for="customFile">Pilih file</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                        </div>
-                    </div>
-                    
+
 
 
                     <div class="text-right">
@@ -146,13 +147,13 @@ Data Produk
             <form action="" method="POST" id="formpromo" class="formpromo">
                 <input type="hidden" name="idpromo" id="idpromo">
                 <div class="modal-body">
-                            <div class="form-group">
-                                <label>Status Promo</label>
-                                <select class="form-control" id="promoedit" name="promoedit">
-                                    <option value="Y">Ya</option>
-                                    <option value="T">Tidak</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label>Status Promo</label>
+                        <select class="form-control" id="promoedit" name="promoedit">
+                            <option value="Y">Ya</option>
+                            <option value="T">Tidak</option>
+                        </select>
+                    </div>
 
                     <div class="text-right">
                         <button id="btnSimpanPromo" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Simpan</button>
@@ -214,7 +215,7 @@ Data Produk
             </div>
 
     </div>
-    
+
     @endverbatim
         </script>
 <script src="{{ asset('/js/Master/product.js') }}"></script>

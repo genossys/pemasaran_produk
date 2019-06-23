@@ -8,16 +8,12 @@ Data User
 
 
 <!-- Button to Open the Modal -->
-<br>
 <section>
     <div>
-        <button id="btnTambah" type="button" style="margin-bottom: 10px"class="btn btn-primary box-tools pull-right" onclick="showTambahUser()">
-            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Tambah User
+        <button id="btnTambah" type="button" class="btn btn-primary btn-sm box-tools pull-left" onclick="showTambahUser()">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
         </button>
     </div>
-    <br>
-    <br>
-    <hr>
 </section>
 
 <div class="table-responsive-lg">
@@ -68,7 +64,7 @@ Data User
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label >Hak Akses</label>
+                                <label>Hak Akses</label>
                                 <select class="form-control" id="cBoxHakAkses" name="hakAkses">
                                     <option value="admin">Admin</option>
                                     <option value="pimpinan">Pimpinan</option>
@@ -145,7 +141,7 @@ Data User
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label >Hak Akses</label>
+                                <label>Hak Akses</label>
                                 <select class="form-control" id="cBoxHakAksesedit" name="hakAksesedit">
                                     <option value="admin">Admin</option>
                                     <option value="pimpinan">Pimpinan</option>
@@ -231,13 +227,14 @@ Data User
 <script src="{{ asset('js/dataTablesBootstrap4.js') }}"></script>
 <script src="{{ asset('/js/Master/user.js') }}"></script>
 <script type="text/javascript">
-$("#passwordedit-confirm").on("blur", function () {
-    var psw = document.getElementById("passwordedit").value;
-    var pswcnf = document.getElementById("passwordedit-confirm").value;
-    if ((psw == pswcnf)) {
-        $("#passwordHelpEdit").attr("hidden", true);
-    } else {
-        $("#passwordHelpEdit").attr("hidden", false);
-    }
-});</script>
+    $("#passwordedit-confirm").on("blur", function() {
+        var psw = document.getElementById("passwordedit").value;
+        var pswcnf = document.getElementById("passwordedit-confirm").value;
+        if ((psw == pswcnf)) {
+            $("#passwordHelpEdit").attr("hidden", true);
+        } else {
+            $("#passwordHelpEdit").attr("hidden", false);
+        }
+    });
+</script>
 @endsection

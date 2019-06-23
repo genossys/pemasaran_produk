@@ -81,9 +81,9 @@
     @yield('footer')
 
     <!-- JS -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
-    <script src=" {{asset ('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset ('/adminlte/plugins/bootstrap/js/bootstrap.js')}}"></script>
 
     @yield('script')
 
