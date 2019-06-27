@@ -48,60 +48,64 @@
         </div>
 </section>
 
-<section class="baju pt-5">
+<section class="pt-5">
     <div class="container ">
         <div class="row mb-1" style="min-height: 70px">
             <div class="col-sm-3 offset-sm-5" style="font-size: 12Px">
                 <div class="form-group">
                     <label> Kategori</label>
-                    <select class="form-control">
-                        <option value="baju">Baju</option>
-                        <option value="rok">Rok</option>
-                        <option value="sepatu">Sepatu</option>
+                    <select class="form-control" name="ktg" id="ktg">
+                        <option value="" selected>Semua</option>
+                        @foreach($kategori as $ktg)
+                        <option value="{{$ktg -> kdKategori}}">{{$ktg -> namaKategori}}</option>
+                        @endforeach
+
                     </select>
                 </div>
             </div>
             <div class="col-sm-3" style="font-size: 12Px">
                 <div class="form-group">
                     <label> Urutkan</label>
-                    <select class="form-control">
-                        <option value="termurah">Termurah</option>
-                        <option value="termahal">Termahal</option>
+                    <select class="form-control" id="orderharga">
+                        <option value="asc">Termurah</option>
+                        <option value="desc">Termahal</option>
                     </select>
                 </div>
             </div>
             <div class="col-sm-1" style="font-size: 12Px">
                 <div class="form-group">
                     <label> <br></label>
-                    <button class="form-control btn btn-info"><span><i class="fa fa-search" aria-hidden="true"></i></span></button>
+                    <button id="btn-cari" class="form-control btn btn-info"><span><i class="fa fa-search" aria-hidden="true"></i></span></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container" data-ride="carousel">
-        <div class="row">
-            @foreach($productNonPromo as $pnp)
-            <div class="col-md-2 mb-4">
-                <div class="kartuproduk">
-                    <img id="thumbnailnonpromo" src="{{asset ('/foto/'.$pnp->urlFoto)}}" alt="{{asset ('/foto/'.$pnp->urlFoto) }}">
-                    <a class="text-left namaproduk" data-toggle="modal" data-target="#myModal"> {{$pnp->namaProduct}}</a>
-                    <div class="hargaproduk">
-                        <a> {{formatRupiah($pnp->hargaJual)}}</a>
-                    </div>
-                    @if (auth()->check())
-                    <div class="text-right">
-                        <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{asset ('/foto/'.$pnp->urlFoto)}}', '{{auth()->user()->username}}')">Detail</button>
-                    </div>
-                    @else
-                    <div class="text-right">
-                        <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{asset ('/foto/'.$pnp->urlFoto)}}', '')">Detail</button>
-                    </div>
-                    @endif
+    <div style="min-height: 800px">
+        <div class="container" data-ride="carousel" id="produknonpromo">
+            <div class="row">
+                @foreach($productNonPromo as $pnp)
+                <div class="col-md-2 mb-4">
+                    <div class="kartuproduk">
+                        <img id="thumbnailnonpromo" src="{{asset ('/foto/'.$pnp->urlFoto)}}" alt="{{asset ('/foto/'.$pnp->urlFoto) }}">
+                        <a class="text-left namaproduk" data-toggle="modal" data-target="#myModal"> {{$pnp->namaProduct}}</a>
+                        <div class="hargaproduk">
+                            <a> {{formatRupiah($pnp->hargaJual)}}</a>
+                        </div>
+                        @if (auth()->check())
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{asset ('/foto/'.$pnp->urlFoto)}}', '{{auth()->user()->username}}')">Detail</button>
+                        </div>
+                        @else
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-primary" onclick="showModal('{{$pnp->kdProduct}}','{{$pnp->namaProduct}}', '{{$pnp->deskripsi}}', '{{$pnp->diskon}}','{{$pnp->hargaJual}}','{{asset ('/foto/'.$pnp->urlFoto)}}', '')">Detail</button>
+                        </div>
+                        @endif
 
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </section>
@@ -165,6 +169,7 @@
             </div>
         </div>
     </div>
+
 </section>
 @endsection
 
@@ -185,4 +190,22 @@
 <script src="{{ asset('/js/tampilan/inputnumber.js') }}"></script>
 <script src="{{ asset('/js/Transaksi/product.js') }}"></script>
 
+<script>
+    $("#btn-cari").click(function() {
+        var ktg = $("#ktg").val();
+        var orderharga = $("#orderharga").val();
+
+        $.ajax({
+            type: 'GET',
+            url: '/cariproduk',
+            data: {
+                ktg: ktg,
+                orderharga: orderharga
+            },
+            success: function(data) {
+                $("#produknonpromo").html(data.html);
+            }
+        });
+    });
+</script>
 @endsection

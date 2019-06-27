@@ -70,7 +70,7 @@ $(function () {
     //Date range picker
     $('#reservation').daterangepicker()
 
-})
+});
 </script>
 
 @endsection
