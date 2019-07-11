@@ -34,7 +34,7 @@ class TrigerUser extends Migration
     public function down()
     {
         //
-        DB::unprepared( 'DROP TRIGGER `BImember`');
-        DB::unprepared( 'DROP TRIGGER `ADmember`');
+            DB::unprepared( 'DROP TRIGGER `BImember`');
+            DB::unprepared( 'DROP TRIGGER `ADmember`');
     }
 }

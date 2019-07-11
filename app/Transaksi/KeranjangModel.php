@@ -8,5 +8,5 @@ class KeranjangModel extends Model
 {
     //
     protected $table = 'tb_keranjang';
-    protected $fillable = ['noTrans', 'tanggal', 'username', 'kdProduct', 'qty', 'diskon', 'checkout'];
+    protected $fillable = ['noTrans', 'tanggal', 'username', 'kdProduct', 'qty', 'harga', 'checkout'];
 }

@@ -197,7 +197,7 @@ Data User
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="passwordedit-confirm">{{ __('Confirm Password') }}</label>
-                                <input id="passwordedit-confirm" type="password" class="form-control" name="passwordedit_confirmation" required autocomplete="new-password">
+                                <input id="passwordedit_confirmation" type="password" class="form-control" name="passwordedit_confirmation" required autocomplete="new-password">
                                 <small id="passwordHelpEdit" class="text-danger" hidden>
                                     Password Tidak Cocok
                                 </small>

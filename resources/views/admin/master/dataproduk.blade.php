@@ -43,7 +43,7 @@ Data Produk
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form action="" method="POST" id="formSimpanProduk" class="form">
+            <form action="" method="POST" id="formSimpanProduk" class="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="alert alert-danger" style="display:none"></div>
@@ -88,10 +88,16 @@ Data Produk
                                 <input type="number" class="form-control" placeholder="Harga Produk" id="hargaProduk" name="hargaProduk">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <label>Diskon</label>
+                                <label>Diskon (%)</label>
                                 <input type="number" class="form-control" placeholder="Harga Produk" id="diskon" name="diskon">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Stok</label>
+                                <input type="number" class="form-control" placeholder="Harga Produk" id="stok" name="stok">
                             </div>
                         </div>
                     </div>
@@ -158,7 +164,6 @@ Data Produk
                         <button id="btnSimpanPromo" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Simpan</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>

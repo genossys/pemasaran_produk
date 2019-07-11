@@ -19,6 +19,13 @@ function formatuang($angka)
     return  number_format($angka, 0, '', '.');
 }
 
+function hargaafterdiskon($diskon, $hargajual)
+{
+    $disctemp = ($diskon * $hargajual) / 100;
+    $hasil = $hargajual - $disctemp;
+    return 'Rp. ' . number_format($hasil, 0, ',', '.');
+}
+
 // function nomorPO_otomatis(){
 //     $sekarang = Carbon\Carbon::now()->format('Y-m-d');
 //     $tahun = substr($sekarang,0,4);

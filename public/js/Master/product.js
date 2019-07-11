@@ -99,7 +99,7 @@ function showTambahProduct() {
     $('#modalProduct').modal('show');
 }
 
-function showEditProduct(kode, nama, kategori, satuan, harga, diskon, deskripsi, promo, e) {
+function showEditProduct(kode, nama, kategori, satuan, harga, diskon, deskripsi, promo, qty, e) {
     $(".form").attr("id", "edit");
     $("#iconbtn").text(' Simpan');
     e.preventDefault();
@@ -110,6 +110,7 @@ function showEditProduct(kode, nama, kategori, satuan, harga, diskon, deskripsi,
     $('#satuan').val(satuan);
     $('#hargaProduk').val(harga);
     $('#diskon').val(diskon);
+    $('#stok').val(qty);
     $('#deskripsi').val(deskripsi);
     $('#promo').val(promo);
     $('#modalProduct').modal('show');
@@ -127,6 +128,7 @@ function clearField(){
     $('#namaProduk').val('');
     $('#hargaProduk').val('0');
     $('#diskon').val('0');
+    $('#stok').val('0');
     $('#deskripsi').val('');
     $('#gambar').val('');
 }

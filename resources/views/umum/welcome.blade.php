@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
-    <title>Penjualan Fashion</title>
+    <title>Najwa Collection</title>
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet"> --}}
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset ('adminlte/plugins/font-awesome/css/font-awesome.min.css')}}">
@@ -58,8 +59,9 @@
                         <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <a href="{{route('keranjang')}}" class="dropdown-item dropdown-footer">Keranjang <span class="badge badge-danger">5</span></a>
-                        <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">History Belanja</a>
+                        <a href="{{route('keranjang')}}" class="dropdown-item dropdown-footer">Keranjang <span class="badge badge-danger"></span></a>
+                        <a href="{{route('konfirmasi')}}" class="dropdown-item dropdown-footer">Konfirmasi Pembayaran</a>
+                        <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">Daftar Belanja</a>
                         <hr>
                         <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">Logout</a>
                     </div>
@@ -98,5 +100,9 @@
 <!-- JS -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('/js/jquery.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/tampilan/genosstyle.js') }}"></script>
+<script>
+   
+</script>
 </body>

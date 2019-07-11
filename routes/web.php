@@ -13,8 +13,24 @@
 Auth::routes();
 
 //menampilkan halaman utama
-Route::get('/', function () {
-    return view('umum/welcome');
+// Route::get('/', function () {
+//     return view('umum/welcome');
+// });
+Route::get('/', 'Transaksi\homeController@index');
+Route::get('/showPromo', 'Transaksi\homeController@getPromo');
+Route::get('/showRecommend', 'Transaksi\homeController@getRecommend');
+Route::get('/showMore/{index}', 'Transaksi\homeController@showmore');
+Route::get('/showAllPrduct', 'Transaksi\homeController@getAllPrduct');
+Route::get('/showAllPromo', 'Transaksi\homeController@getAllPromo');
+Route::get('/showAllRecommed', 'Transaksi\homeController@getAllRecommend');
+Route::get('/invoice', 'Transaksi\homeController@invoice');
+
+
+Route::get('/productDetail/{kdproduct}', 'Transaksi\homeController@getDetailProduct')->name('pagedetail');
+
+
+Route::get('/testapi', function(){
+    return view('umum.testapi');
 });
 
 
@@ -22,13 +38,12 @@ Route::get('/keranjang', function () {
     return view('/umum/keranjang');
 })->name('keranjang');
 
-Route::get('/getDataKeranjang', 'Transaksi\KeranjangController@getDataKeranjang');
 
 
 
-Route::get('/pembayaran', function () {
-    return view('/umum/pembayaran');
-})->name('pembayaran');
+
+
+
 
 
 Route::get('/registermember', 'Master\memberController@showFormRegistrasi');
@@ -39,16 +54,46 @@ Route::get('/login','Auth\LoginController@login')->name('login');
 Route::post('/postlogin','Auth\LoginController@postlogin');
 Route::get('/logout','Auth\LoginController@logout')->name('logout');
 
-Route::group(['prefix' => 'product'], function(){
-    Route::get('/', 'Master\productController@index')->name('product');
-    Route::post('/simpanProduct', 'Transaksi\KeranjangController@insert');
+// Route::group(['prefix' => 'product'], function(){
+//     Route::get('/', 'Master\productController@index')->name('product');
+//     Route::get('/showProduct', 'Transaksi\productController@getProduct');
+//     Route::get('/showPromo', 'Transaksi\productController@getPromo');
+//     Route::get('/showDetailProduct', 'Transaksi\productController@getDetail');
+//     Route::post('/tambahKeranjang', 'Transaksi\KeranjangController@insert');
     
-});
+// });
 
 
 //Route yang bisa di akses setelah melakukan login
 Route::group(['middleware' => 'auth'],function(){
 
+    Route::group(['prefix' => 'transaksi'], function () {
+        Route::get('/keranjang', 'Transaksi\keranjangController@index')->name('keranjang');
+        Route::get('/getDataKeranjang', 'Transaksi\KeranjangController@getDataKeranjang');
+        Route::post('/cekout', 'Transaksi\keranjangController@cekout');
+        Route::get('/konfirmasibayar', 'Transaksi\keranjangController@showPaymentPage')->name('pageconfirm');
+        Route::get('/showKonfirmasi', 'Transaksi\belanjaController@getkonfirmasi');
+        Route::get('/pembayaran/{nota}', 'Transaksi\belanjaController@index')->name('pembayaran');
+        Route::get( '/listongkir', 'Master\ongkirController@getOngkir');
+        Route::get( '/showbiaya/{kota}', 'Master\ongkirController@getBiayaOngkir');
+        Route::post('/konfirmasi', 'Transaksi\belanjaController@insert');
+
+        Route::get('/showProduct', 'Transaksi\productController@getProduct');
+        Route::get('/showPromo', 'Transaksi\productController@getPromo');
+        Route::get('/showDetailProduct', 'Transaksi\productController@getDetail');
+        Route::post('/tambahKeranjang', 'Transaksi\KeranjangController@insert');
+    });
+
+    
+    
+    
+    
+    Route::get('/nota', function(){
+        return view('umum.nota');
+    });
+    
+    
+    
     //Route yang hanya bisa di akses oleh pimpinan atau admin
     Route::group(['prefix' => 'admin', 'middleware' => 'hakakses:pimpinan|admin'], function(){
 
@@ -97,16 +142,14 @@ Route::group(['middleware' => 'auth'],function(){
                 Route::delete('/deleteProduct','Master\productController@delete');
 
             });
+            Route::group(['prefix' => 'transaksi'], function(){
+                Route::get('/', 'Transaksi\pembayaranController@index')->name('pagetransaksi');
+                Route::get('/showData', 'Transaksi\pembayaranController@getDataPembayaran');
+                Route::post('/edit', 'Transaksi\pembayaranController@edit');
+
+            });
 
     });
-
-    
-
-Route::get('/kategori', function () {
-    return view('/admin/master/datakategori');
-})->name('kategori');
-
-
 
 
 });

@@ -57,6 +57,7 @@ class productController extends Controller
             'tb_satuan.namaSatuan as namaSatuan',
             'tb_product.hargaJual as hargaJual',
             'tb_product.diskon as diskon',
+            'tb_product.qty as qty',
             'tb_product.deskripsi as deskripsi',
             'tb_product.promo as promo',
             'tb_product.urlFoto as urlFoto')
@@ -67,7 +68,7 @@ class productController extends Controller
             ->addColumn('action', function ($product) {
                 return '<a class="btn-sm btn-warning" id="btn-edit" href="#" onclick="showEditProduct(\''. $product->kdProduct. '\',
                  \'' . $product->namaProduct . '\', \'' . $product->kdKategori . '\', \'' . $product->kdSatuan . '\', \'' . $product->hargaJual . '\',
-                  \'' . $product->diskon . '\', \'' . $product->deskripsi . '\', \'' . $product->promo . '\', event)" ><i class="fa fa-edit"></i></a>
+                  \'' . $product->diskon . '\', \'' . $product->deskripsi . '\', \'' . $product->promo . '\', \'' . $product->qty . '\', event)" ><i class="fa fa-edit"></i></a>
                             <a class="btn-sm btn-danger" id="btn-delete" href="#" onclick="hapus(\''. $product->kdProduct. '\',event)" ><i class="fa fa-trash"></i></a>
                             <a class="btn-sm btn-info details-control" id="btn-detail" href="#"><i class="fa fa-folder-open"></i></a>
                         ';
@@ -141,6 +142,7 @@ class productController extends Controller
                 $product->kdSatuan = $r->satuan;
                 $product->hargaJual = $r->hargaProduk;
                 $product->diskon = $r->diskon;
+                $product->qty = $r->stok;
                 $product->deskripsi = $r->deskripsi;
                 $product->promo = $r->promo;
                 $product->urlFoto = $namaFoto;
@@ -180,6 +182,7 @@ class productController extends Controller
                     'kdSatuan' => $r->satuan,
                     'hargaJual' => $r->hargaProduk,
                     'diskon' => $r->diskon,
+                    'qty' => $r->stok,
                     'deskripsi' => $r->deskripsi,
                     'promo' => $r->promo,
                 ];
@@ -187,7 +190,6 @@ class productController extends Controller
                 if ($r->hasFile('gambar')) {
                     $upFoto = $r->file('gambar');
                     $namaFoto = $r->kdProduk . '.' . $upFoto->getClientOriginalExtension();
-                    // $namaFoto = 'asu.' . $upFoto->getClientOriginalExtension();
                     $r->gambar->move(public_path('foto'), $namaFoto);
                     $data = array_add($data, 'urlFoto', $namaFoto);
                 }
