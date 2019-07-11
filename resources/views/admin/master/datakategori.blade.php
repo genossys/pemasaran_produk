@@ -10,14 +10,14 @@ Data Kategori
 <!-- Button to Open the Modal -->
 <br>
 <div>
-    <div>
-        <button id="btnTambah" type="button" style="margin-bottom: 10px"class="btn btn-primary box-tools pull-right" onclick="showTambahkategori()">
-            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Tambah Kategori
-        </button>
-    </div>
-    <br>
-    <br>
-    <hr>
+    <!-- Button to Open the Modal -->
+    <section>
+        <div>
+            <button id="btnTambah" type="button" class="btn btn-primary btn-sm box-tools pull-left" onclick="showTambahUser()">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+    </section>
 </div>
 
 <div class="table-responsive-lg">

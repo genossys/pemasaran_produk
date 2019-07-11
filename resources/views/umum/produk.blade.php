@@ -11,7 +11,7 @@
     </div>
 </section>
 
-<section class="baju pt-5">
+<section class="pt-5">
     <div class="container ">
         <div class="row mb-1" style="min-height: 70px">
             <div class="col-sm-3 offset-sm-5" style="font-size: 12Px">
@@ -144,4 +144,22 @@
     
 </script>
 
+<script>
+    $("#btn-cari").click(function() {
+        var ktg = $("#ktg").val();
+        var orderharga = $("#orderharga").val();
+
+        $.ajax({
+            type: 'GET',
+            url: '/cariproduk',
+            data: {
+                ktg: ktg,
+                orderharga: orderharga
+            },
+            success: function(data) {
+                $("#produknonpromo").html(data.html);
+            }
+        });
+    });
+</script>
 @endsection

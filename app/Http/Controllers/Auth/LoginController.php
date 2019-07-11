@@ -50,7 +50,7 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    
+
     function postlogin(Request $request)
     {
         $login_type = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL)
@@ -68,5 +68,5 @@ class LoginController extends Controller
         }
     }
 
-    
+
 }

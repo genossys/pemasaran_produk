@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href=" {{ asset('/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-    
+
 
 
     @yield('css')
@@ -34,11 +34,11 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand border-bottom home">
+        <nav class="main-header navbar navbar-expand border-bottom">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link text-dark" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a class="nav-link">@yield('judul')</a>
@@ -49,14 +49,14 @@
 
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav right" style="margin-right: 0">
+            <ul class="navbar-nav ml-auto" style="margin-right: 0">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link text-dark" data-toggle="dropdown" href="#">
                         <i class="fa fa-user"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">Logout</a>
+                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right text-dark">
+                        <a href="{{route('logout')}}" class="dropdown-item dropdown-footer ">Logout</a>
                     </div>
                 </li>
 
@@ -109,14 +109,14 @@
                                         <p>Data Member</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="{{ route('pagesatuan') }}" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Satuan</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="{{ route('pagekategori') }}" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
@@ -130,7 +130,7 @@
                                         <p>Data Produk</p>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
 
@@ -186,10 +186,7 @@
 
             <!-- Main content -->
             <section class="content">
-                <br>
-                <br>
-
-                <div class="container-fluid">
+                <div class="container-fluid pt-2">
                     @yield('content')
                 </div><!-- /.container-fluid -->
             </section>
@@ -200,18 +197,14 @@
             <strong>Copyright &copy; 2019.</strong>
         </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+
     </div>
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset ('/adminlte/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)

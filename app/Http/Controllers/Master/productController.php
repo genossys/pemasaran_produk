@@ -9,22 +9,28 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 use App\Master\satuanModel;
 use App\Master\kategoriModel;
+use Symfony\Component\HttpFoundation\Response;
 
 class productController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
+        $kategori = kategoriModel::query()
+            ->select('kdKategori', 'namaKategori')
+            ->get();
+
         $productPromo = productModel::query()
-                    ->select( 'kdProduct', 'namaProduct', 'kdKategori', 'kdSatuan', 'hargaJual', 'diskon', 'deskripsi', 'promo', 'urlFoto')
-                    ->where('promo', '=', 'Y')
-                    ->get();
+            ->select('kdProduct', 'namaProduct', 'kdKategori', 'kdSatuan', 'hargaJual', 'diskon', 'deskripsi', 'promo', 'urlFoto')
+            ->where('promo', '=', 'Y')
+            ->get();
 
         $productNonPromo = productModel::query()
-                    ->select( 'kdProduct', 'namaProduct', 'kdKategori', 'kdSatuan', 'hargaJual', 'diskon', 'deskripsi', 'promo', 'urlFoto')
-                    ->where('promo', '=', 'T')
-                    ->get();
-        
-        return view('/umum/produk')->with(['productPromo' => $productPromo, 'productNonPromo' => $productNonPromo]);
+            ->select('kdProduct', 'namaProduct', 'kdKategori', 'kdSatuan', 'hargaJual', 'diskon', 'deskripsi', 'promo', 'urlFoto')
+            ->where('promo', '=', 'T')
+            ->get();
+
+        return view('/umum/produk')->with(['productPromo' => $productPromo, 'productNonPromo' => $productNonPromo, 'kategori' => $kategori]);
     }
 
     public function getDataSatuan()
@@ -44,7 +50,8 @@ class productController extends Controller
         return response()->json($kategori);
     }
 
-    public function getDataproduct(){
+    public function getDataproduct()
+    {
 
         $product = productModel::query()
             ->join('tb_kategori', 'tb_product.kdKategori', '=', 'tb_kategori.kdKategori')
@@ -63,10 +70,10 @@ class productController extends Controller
             'tb_product.urlFoto as urlFoto')
             ->get();
 
-        return DataTables::of( $product)
+        return DataTables::of($product)
             ->addIndexColumn()
             ->addColumn('action', function ($product) {
-                return '<a class="btn-sm btn-warning" id="btn-edit" href="#" onclick="showEditProduct(\''. $product->kdProduct. '\',
+                return '<a class="btn-sm btn-warning" id="btn-edit" href="#" onclick="showEditProduct(\'' . $product->kdProduct . '\',
                  \'' . $product->namaProduct . '\', \'' . $product->kdKategori . '\', \'' . $product->kdSatuan . '\', \'' . $product->hargaJual . '\',
                   \'' . $product->diskon . '\', \'' . $product->deskripsi . '\', \'' . $product->promo . '\', \'' . $product->qty . '\', event)" ><i class="fa fa-edit"></i></a>
                             <a class="btn-sm btn-danger" id="btn-delete" href="#" onclick="hapus(\''. $product->kdProduct. '\',event)" ><i class="fa fa-trash"></i></a>
@@ -83,17 +90,15 @@ class productController extends Controller
                 if ($product->promo == 'Y') {
                     return '<a href="#" onclick="showPromo(\'' . $product->kdProduct . '\', event)">Ya</a>';
                 } else {
-                return '<a href="#" onclick="showPromo(\'' . $product->kdProduct . '\', event)">Tidak</a>';
+                    return '<a href="#" onclick="showPromo(\'' . $product->kdProduct . '\', event)">Tidak</a>';
                 }
-                
             })
             ->rawColumns(['action', 'hargaJual', 'diskon', 'promo'])
             ->make(true);
-
-        
     }
 
-    public function masterProduct(){
+    public function masterProduct()
+    {
         return view('admin.master.dataproduk');
     }
 
@@ -114,7 +119,6 @@ class productController extends Controller
         ];
 
         return Validator::make($r->all(), $rules, $messages);
-       
     }
 
     public function insert(Request $r)
@@ -226,7 +230,8 @@ class productController extends Controller
         ]);
     }
 
-    public function editpromo(Request $r){
+    public function editpromo(Request $r)
+    {
         try {
             $id = $r->idpromo;
             $data = [
@@ -248,6 +253,28 @@ class productController extends Controller
                 'data' => $th,
                 'valid' => true,
             ]);
+        }
+    }
+
+    public function cariproduk(Request $request)
+    {
+        $productNonPromo = productModel::query()
+            ->select('kdProduct', 'namaProduct', 'kdKategori', 'kdSatuan', 'hargaJual', 'diskon', 'deskripsi', 'promo', 'urlFoto')
+            ->where([
+                ['promo', '=', 'T'],
+                ['kdKategori', 'like', '%' . $request->ktg . '%']
+            ])
+            ->orderby('hargaJual', $request->orderharga)
+            ->get();
+
+            $contoh = $productNonPromo->first();
+
+        if ($contoh != null) {
+            $returnHTML = view('isipage.produknonpromo')->with('productNonPromo', $productNonPromo)->render();
+            return response()->json(array('success' => true, 'html' => $returnHTML));
+        } else {
+            $returnHTML = view('isipage.produkkosong')->render();
+            return response()->json(array('success' => true, 'html' => $returnHTML));
         }
     }
 }

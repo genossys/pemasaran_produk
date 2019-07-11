@@ -50,9 +50,11 @@ Route::get('/registermember', 'Master\memberController@showFormRegistrasi');
 Route::post('/postRegister', 'Master\memberController@register')->name('registermember');
 
 //Login Admin dan Member
-Route::get('/login','Auth\LoginController@login')->name('login');
-Route::post('/postlogin','Auth\LoginController@postlogin');
-Route::get('/logout','Auth\LoginController@logout')->name('logout');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/postlogin', 'Auth\LoginController@postlogin');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/simpanProduct', 'Transaksi\KeranjangController@insert');
+Route::get('/cariproduk', 'Master\productController@cariproduk')->name('cariproduk');
 
 // Route::group(['prefix' => 'product'], function(){
 //     Route::get('/', 'Master\productController@index')->name('product');
@@ -65,7 +67,7 @@ Route::get('/logout','Auth\LoginController@logout')->name('logout');
 
 
 //Route yang bisa di akses setelah melakukan login
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'transaksi'], function () {
         Route::get('/keranjang', 'Transaksi\keranjangController@index')->name('keranjang');
@@ -95,7 +97,7 @@ Route::group(['middleware' => 'auth'],function(){
     
     
     //Route yang hanya bisa di akses oleh pimpinan atau admin
-    Route::group(['prefix' => 'admin', 'middleware' => 'hakakses:pimpinan|admin'], function(){
+    Route::group(['prefix' => 'admin', 'middleware' => 'hakakses:pimpinan|admin'], function () {
 
         Route::get('/', function () {
             return view('/admin/menuawal');
@@ -152,5 +154,7 @@ Route::group(['middleware' => 'auth'],function(){
     });
 
 
+    Route::get('/kategori', function () {
+        return view('/admin/master/datakategori');
+    })->name('kategori');
 });
-
