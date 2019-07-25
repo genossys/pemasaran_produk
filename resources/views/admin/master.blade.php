@@ -16,14 +16,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset ('adminlte/plugins/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/adminlte/css/adminlte.min.css')}}">
     <!-- Genosstyle -->
     <link rel="stylesheet" href="{{ asset('/css/genosstyle.css')}}">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}">
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href=" {{ asset('/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
 
 
@@ -98,34 +95,34 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item ">
-                                    <a href="{{route ('pageuser')}}" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data User</p>
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="{{ route('pagemember') }}" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Member</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('pagesatuan') }}" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Satuan</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('pagekategori') }}" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Kategori</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('pageproduct') }}" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Data Produk</p>
                                     </a>
@@ -144,7 +141,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('pagetransaksi') }}" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Pembayaran</p>
                                     </a>
